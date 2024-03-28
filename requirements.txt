@@ -1,3 +1,4 @@
 Flask
 requests
+pytest
 prometheus_flask_exporter
