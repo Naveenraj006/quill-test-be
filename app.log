@@ -1,0 +1,2 @@
+2024-03-28 12:22:38,818 - app - DEBUG - Fetching weather data from https://api.openweathermap.org/data/3.0/onecall?lat=37.7749&lon=-122.4194&appid=61b45d4766f913b47cbdf210b056525a
+2024-03-28 12:27:47,602 - app - DEBUG - Fetching weather data from https://api.openweathermap.org/data/3.0/onecall?lat=37.7749&lon=-122.4194&appid=61b45d4766f913b47cbdf210b056525a

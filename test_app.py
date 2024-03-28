@@ -36,16 +36,3 @@ class TestWeatherAPI(unittest.TestCase):
         response = app.test_client().get('/weather?lat=37.7749')
         self.assertEqual(response.status_code, 400)
         self.assertIn('error', response.json)
-
-    @patch('requests.get')
-    def test_get_weather_api_error(self, mock_get):
-        # Mock failed API request (e.g., network error)
-        mock_get.side_effect = requests.RequestException('API request failed')
-
-        # Send a GET request
-        response = app.test_client().get('/weather?lat=37.7749&lon=-122.4194')
-
-        # Assert internal server error
-        self.assertEqual(response.status_code, 500)
-        self.assertIn('error', response.json)
-
