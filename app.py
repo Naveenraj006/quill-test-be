@@ -1,9 +1,10 @@
 from flask import Flask, request, jsonify
 import requests
 import logging
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app) 
 # Configure logging (replace with your desired configuration)
 app.logger.setLevel(logging.DEBUG)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
