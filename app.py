@@ -24,7 +24,7 @@ def get_weather():
         return jsonify({"error": "Latitude and longitude are required parameters"}), 400
 
     # Construct the URL with hidden API key
-    url = f"https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&appid={API_KEY}"
+    url = f"https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&appid={API_KEY}&units=imperial"
     app.logger.debug(f"Fetching weather data from {url}")
 
     try:
