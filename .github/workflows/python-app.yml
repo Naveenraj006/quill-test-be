@@ -1,0 +1,25 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]  # Trigger on pushes to the main branch (adjust if needed)
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest  # Run on Ubuntu virtual machines provided by GitHub Actions
+    steps:
+      - uses: actions/checkout@v3  # Checkout your code from the Git repository
+      - name: Set up Python environment
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'  # Specify the desired Python version (adjust as needed)
+      - name: Install dependencies
+        run: pip install -r requirements.txt  # Install required Python libraries
+      - name: Run tests
+        run: pytest  # Run tests using pytest
+      - name: Trigger Caprover build on success (optional)
+        run: |
+          if [[ $? -eq 0 ]]; then
+            CAPROVER_WEBHOOK_URL="http://captain.172-93-54-122.nip.io/api/v2/user/apps/webhooks/triggerbuild?namespace=captain&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InRva2VuVmVyc2lvbiI6ImQyMWYzZDYxLTljOGItNDA2Mi05YTc3LTQyODBlNWEzNmZmNiIsImFwcE5hbWUiOiJxdWlsbGJvdC10YXNrLXB5dGhvbiIsIm5hbWVzcGFjZSI6ImNhcHRhaW4ifSwiaWF0IjoxNzExNjI3NjI5fQ.swVev30NwOR2GHCusJvz8dvyQtrlXfDQ-oLjTdyHNDw"
+            curl -X POST "$CAPROVER_WEBHOOK_URL"
+          fi
